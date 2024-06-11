@@ -98,15 +98,18 @@ class INI
         unset($keys[0]);
         $key_str = join(".", $keys);
         $out .= "$key_str = \"$v\"" . PHP_EOL;
+      } else {
+        $key_str = join(".", $keys);
+        $out .= "$key_str = \"$v\"" . PHP_EOL;
       }
     }
     return $out;
   }
 
-  public static function write_file(array $data, string $path, bool $protected = false)
+  public static function write_file(array $data, string $path, bool $process_sections, bool $protected = false)
   {
     $str = $protected ? ";<?php exit(); ?>" . PHP_EOL : "";
-    $str .= self::from_array($data);
+    $str .= self::from_array($data, $process_sections);
     return file_put_contents($path . ($protected ? ".php" : ""), $str);
   }
 }
