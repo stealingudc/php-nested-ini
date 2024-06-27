@@ -123,7 +123,7 @@ INI::write_file($arr, "/path/to/file.ini", false, true);
 /*
 -- file.ini.php --
 
-<?php exit(); ?>
+;<?php exit(); ?>
 foo.bar.baz = "value"
 */
 ```
